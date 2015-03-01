@@ -41,10 +41,9 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
             try {
                 if (xhr.status==200) {
                     //XXX: parse some JSON from the request!
-                    var data = JSON.parse(xmlhttp.responseText);
                     //XXX: Pass the data to the callback!
                     if(callback !== null) {
-                        callback(data);
+                        callback(JSON.parse(xhr.responseText));
                     }
                 }
             }
@@ -54,7 +53,7 @@ function sendJSONXMLHTTPRequest(url, objects, callback) {
         }
     };
     //XXX: POST to a URL
-    xhr.open("POST", url, true);
+    xhr.open("POST", url);
     //XXX: set the mimetype and the accept headers!
     // Remember to use application/json !
     xhr.setRequestHeader("Content-type", "application/json");
